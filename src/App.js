@@ -14,17 +14,21 @@ class App extends Component {
     }
 
     this.addTask = this.addTask.bind(this)
+    this.deleteTask = this.deleteTask.bind(this)
   }
 
   addTask(str) {
     this.setState({tasks: [{description: str, status: "To do"}, ...this.state.tasks] })
   }
   deleteTask(index) {
-    this.state.tasks.slice(index)
+    console.log(index);
+    const array = [...this.state.tasks]
+    array.splice(index, 1)
+    this.setState({tasks: array})
   }
 
   render() {
-    // console.log(this.state.tasks)
+    console.log(this.state.tasks)
     return (
       <div className="container">
         <h1>To Do List v2 </h1>
@@ -34,7 +38,7 @@ class App extends Component {
         <div className="row">
           <h2>List</h2>
           {this.state.tasks.map((element, index) => {
-              return  <List task={element} key={index} />
+              return  <List task={element} key={index} deleteTask={this.deleteTask} index={index} />
           })}
         </div>
       </div>

@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 class List extends Component {
     render() {
         const { description, status } = this.props.task
-        console.log(this.props)
+        const { index } = this.props
+         console.log(this.props)
         return (
             <>
             <div className="col-9 mx-1">
@@ -13,7 +14,7 @@ class List extends Component {
                 {status}
             </div>
             <div className="col-1">
-                <button>Supprimer</button>
+                <button onClick={() => this.props.deleteTask(index)}>Supprimer</button>
             </div>
             </>
         )
