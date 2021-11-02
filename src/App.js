@@ -19,9 +19,12 @@ class App extends Component {
   addTask(str) {
     this.setState({tasks: [{description: str, status: "To do"}, ...this.state.tasks] })
   }
-  
+  deleteTask(index) {
+    this.state.tasks.slice(index)
+  }
+
   render() {
-    console.log(this.state.tasks)
+    // console.log(this.state.tasks)
     return (
       <div className="container">
         <h1>To Do List v2 </h1>
@@ -30,7 +33,9 @@ class App extends Component {
         </div>
         <div className="row">
           <h2>List</h2>
-          <List tasks= {this.state.tasks}/>
+          {this.state.tasks.map((element, index) => {
+              return  <List task={element} key={index} />
+          })}
         </div>
       </div>
     );
